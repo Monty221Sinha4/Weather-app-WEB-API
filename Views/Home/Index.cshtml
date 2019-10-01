@@ -1,0 +1,27 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p id="reply">
+
+</p>
+<p id="reply">Temp</p>
+<p id="Humidity">Humidity</p>
+<button>Get Weather</button>
+<script>
+    $(document).ready(function)(){
+        $("button").click(function () {
+
+            $.get("http://api.openweathermap.org/data/2.5/weather?q=London,uk&APPID=9d4f5b53afebb4cbf5a9bab392352bab&units=imperial", function (response) {
+                console.log();
+                $("#reply").text(response.name);
+                $('#name').text(response.main.temp);
+                $("#Humidity").text(response.main.humditiy);
+            });
+        });
+    });
+</script>

@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewBag.Title = "WeatherInfo";
+    Layout = "~/Views/Home/Index.cshtml";
+}
+
+<h2>WeatherInfo</h2>
+
+
+<div class="col-md-12">
+    <h1>Condtions in <span data-bind="text:name"></span></h1>
+</div>
+<div class="col-md-12">
+    Temparture is <span data-bind="text:main.temp"></span>&degF
+</div>
+<button>Get Weather</button>
+<script>
+    var weather = Object();
+    $(document).ready(function)(){
+        $("button").click(function () {
+
+            $.get("@Url.Action("GetWeather","Home")", function (response) {
+                console.log();
+                weather = ko.mapping.FromJS(response)
+                ko.applyBindings(weather)
+            });
+        });
+    });
+</script>
